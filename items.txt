@@ -1,0 +1,91 @@
+Bubble Sort
+Selection Sort
+Insertion Sort
+Merge Sort
+Quick Sort
+Heap Sort
+Radix Sort
+Bucket Sort
+Linear Search
+Binary Search
+Interpolation Search
+Hashing for search
+Depth-First Search (DFS)
+Breadth-First Search (BFS)
+Dijkstra's Algorithm
+Bellman-Ford Algorithm
+Floyd-Warshall Algorithm
+Prim's Algorithm
+Kruskal's Algorithm
+Fibonacci Sequence
+Knapsack Problem
+Longest Common Subsequence (LCS)
+Edit Distance
+Matrix Chain Multiplication
+Activity Selection Problem
+Fractional Knapsack Problem
+Huffman Coding
+Minimum Spanning Tree
+N-Queens Problem
+Sudoku Solver
+Maze Solver
+Hamiltonian Cycle
+Subset Sum
+Strassen's Matrix Multiplication.
+Knuth-Morris-Pratt (KMP) Algorithm
+Rabin-Karp Algorithm
+Boyer-Moore Algorithm
+Levenshtein Distance
+Hash Table
+Bloom Filters
+Binary Tree Pre-order Traversal
+Binary Tree In-order Traversal
+Binary Tree Post-order Traversal
+Tree Search
+Matrix Multiplication
+Matrix Inversion
+Determinant Calculation
+Gaussian Elimination
+Caesar Cipher
+Vigenère Cipher
+RSA Algorithm
+DES
+AES
+Huffman Coding
+Run-Length Encoding
+LZ77
+LZ78
+Linear Regression
+Logistic Regression
+K-Means Clustering
+Decision Trees
+Random Forest
+Gradient Descent
+Stochastic Gradient Descent
+Newton's Method
+Simulated Annealing
+Genetic Algorithms
+Particle Swarm Optimization
+Tokenization
+Stemming
+Lemmatization
+Part-of-Speech Tagging
+Named Entity Recognition
+Sentiment Analysis
+Genetic Programming
+minimax
+alpha-beta pruning
+Q-Learning
+SARSA
+Policy Gradients
+Sudoku
+N-puzzle
+graph coloring
+regular expressions
+finite automata for pattern matching
+search engine algorithm
+PageRank
+TF-IDF
+numerical integration
+differentiation
+solving linear equations

@@ -1,0 +1,24 @@
+The Maintainability Index is a software metric that evaluates the maintainability of source code, indicating how easy it is to maintain and modify. It was first introduced in 1992 by Paul Oman and Jack Hagemeister at the International Conference on Software Maintenance. The goal of the Maintainability Index is to provide a holistic view of the relative maintenance burden for different sections of a project by combining several metrics:
+
+Halstead’s Volume (HV): Measures the size of the code.
+Cyclomatic Complexity (CC): Indicates the number of linearly independent paths through the code.
+Lines of Code (LOC): The total number of lines in the code.
+Percentage of Comments (perCOM): The proportion of lines in the code that are comments.
+The original formula for calculating the Maintainability Index is:
+
+[Maintainability = 171 - 5.2 \times \ln(HV) - 0.23 \times CC - 16.2 \times \ln(LOC) + 50 \times \sqrt{2.46 \times perCOM}]
+
+This formula was later updated by Microsoft to be bounded between 1 and 100, with the new formula being:
+
+[Maintainability = \max(0, (171 - 5.2 \times \ln(HV) - 0.23 \times CC - 16.2 \times \ln(LOC)) \times 100 / 171)]
+
+The Maintainability Index is primarily used to calculate relative maintainability between sections of projects or projects overall for the same team, rather than as an absolute metric. The original formula had an upper bound of 171 and no lower bound, with suggested score ranges for interpretation:
+
+>= 85: Highly Maintainable
+65 - 85: Moderately Maintainable
+<= 65: Difficult to Maintain
+The updated Visual Studio definition slightly changes these ranges:
+
+>= 20: Highly Maintainable
+10 & < 20: Moderately Maintainable
+< 10: Difficult to Maintain
