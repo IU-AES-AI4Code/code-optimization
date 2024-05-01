@@ -1,0 +1,34 @@
+def test_radixsort():
+    # Test with positive numbers
+    arr = [170, 45, 75, 90, 802, 24, 2, 66]
+    radixsort(arr)
+    assert arr == [2, 24, 45, 66, 75, 90, 170, 802]
+
+    # Test with negative numbers
+    arr = [-170, -45, -75, -90, -802, -24, -2, -66]
+    radixsort(arr)
+    assert arr == [-802, -170, -90, -75, -66, -45, -24, -2]
+
+    # Test with positive and negative numbers
+    arr = [170, -45, 75, -90, 802, -24, 2, -66]
+    radixsort(arr)
+    assert arr == [-802, -66, -45, -24, 2, 75, 170, 802]
+
+    # Test with duplicate numbers
+    arr = [170, 45, 75, 90, 802, 24, 2, 66, 2, 2]
+    radixsort(arr)
+    assert arr == [2, 2, 24, 45, 66, 75, 90, 170, 802]
+
+    # Test with large numbers
+    arr = [170000000, 45000, 7500, 90, 8020000, 2400, 200, 66000]
+    radixsort(arr)
+    assert arr == [200, 2400, 45000, 66000, 7500, 90, 170000000, 8020000]
+
+    # Test with zero
+    arr = [0, 0, 0, 0, 0]
+    radixsort(arr)
+    assert arr == [0, 0, 0, 0, 0]
+
+    print("All tests passed.")
+
+test_radixsort()

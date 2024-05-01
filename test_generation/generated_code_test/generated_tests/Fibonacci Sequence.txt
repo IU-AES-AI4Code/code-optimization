@@ -1,0 +1,26 @@
+def test_fibonacci():
+    assert fibonacci(1) == [0]
+    assert fibonacci(2) == [0, 1]
+    assert fibonacci(3) == [0, 1, 1]
+    assert fibonacci(4) == [0, 1, 1, 2]
+    assert fibonacci(5) == [0, 1, 1, 2, 3]
+    assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+    # Testing with negative numbers
+    try:
+        fibonacci(-1)
+    except ValueError as e:
+        assert str(e) == 'Number of terms should be a positive integer'
+
+    # Testing with non-integer numbers
+    try:
+        fibonacci(3.5)
+    except ValueError as e:
+        assert str(e) == 'Number of terms should be a positive integer'
+
+    # Testing with zero
+    assert fibonacci(0) == []
+
+    print("All tests passed.")
+
+test_fibonacci()

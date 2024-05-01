@@ -1,0 +1,34 @@
+import sys
+
+def min_key(key, mst_set):
+    min_val = sys.maxsize
+    min_index = -1
+    for v in range(len(key)):
+        if key[v] < min_val and mst_set[v] == False:
+            min_val = key[v]
+            min_index = v
+    return min_index
+
+def prim_mst(graph):
+    num_vertices = len(graph)
+    key = [sys.maxsize] * num_vertices
+    parent = [None] * num_vertices
+    mst_set = [False] * num_vertices
+
+    key[0] = 0
+    parent[0] = -1
+
+    for _ in range(num_vertices):
+        u = min_key(key, mst_set)
+        mst_set[u] = True
+
+        for v in range(num_vertices):
+            if (0 < graph[u][v] < key[v] and mst_set[v] == False):
+                key[v] = graph[u][v]
+                parent[v] = u
+
+    mst = []
+    for i in range(1, num_vertices):
+        mst.append((parent[i], i, graph[i][parent[i]]))
+
+    return mst

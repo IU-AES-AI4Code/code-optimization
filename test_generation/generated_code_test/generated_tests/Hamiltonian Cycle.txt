@@ -1,0 +1,34 @@
+def test_hamiltonian_cycle():
+    g1 = Graph(5)
+    g1.add_edge(0, 1)
+    g1.add_edge(1, 2)
+    g1.add_edge(2, 3)
+    g1.add_edge(3, 4)
+    g1.add_edge(4, 0)
+    assert g1.hamiltonian_cycle() == True
+
+    g2 = Graph(5)
+    g2.add_edge(0, 1)
+    g2.add_edge(1, 2)
+    g2.add_edge(2, 3)
+    g2.add_edge(3, 0)
+    assert g2.hamiltonian_cycle() == False
+
+    g3 = Graph(3)
+    g3.add_edge(0, 1)
+    g3.add_edge(1, 2)
+    assert g3.hamiltonian_cycle() == True
+
+    g4 = Graph(4)
+    g4.add_edge(0, 1)
+    g4.add_edge(1, 2)
+    g4.add_edge(2, 3)
+    assert g4.hamiltonian_cycle() == False
+
+    g5 = Graph(2)
+    g5.add_edge(0, 1)
+    assert g5.hamiltonian_cycle() == True
+
+    print("All tests passed.")
+
+test_hamiltonian_cycle()

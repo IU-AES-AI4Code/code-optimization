@@ -1,0 +1,21 @@
+import numpy as np
+
+def test_k_means_clustering():
+    # Test with a simple 2D data
+    data = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])
+    k = 2
+    centroids, labels = k_means_clustering(data, k)
+    
+    # Check if the centroids are within the data points
+    for i in range(k):
+        assert np.any(np.all(centroids[i] == data, axis=1))
+    
+    # Check if all data points are assigned to a cluster
+    assert len(labels) == len(data)
+    
+    # Check if all labels are valid (i.e., within the range of k)
+    assert np.all(np.isin(labels, list(range(k))))
+    
+    print("All tests passed.")
+
+test_k_means_clustering()

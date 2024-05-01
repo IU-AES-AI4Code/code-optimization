@@ -1,0 +1,55 @@
+import numpy as np
+
+def pagerank(M, num_iterations: int = 100, d: float = 0.85):
+    N = M.shape[1]
+    v = np.random.rand(N, 1)
+    v = v / np.sum(v)
+    iteration = 0
+    while iteration < num_iterations:
+        iteration += 1
+        v = d * np.matmul(M, v) + (1 - d) / N
+    return v
+
+# Test 1: Simple graph
+M = np.array([[0, 0, 0, 0, 1],
+              [0.5, 0, 0, 0, 0],
+              [0.5, 0, 0, 0, 0],
+              [0, 1, 0.5, 0, 0],
+              [0, 0, 0.5, 1, 0]])
+v = pagerank(M, 100, 0.85)
+print("Test 1: Simple graph")
+print("Expected: [0.25, 0.25, 0.25, 0.25, 0.25]")
+print("Actual: ", v.flatten())
+
+# Test 2: Graph with multiple outgoing edges
+M = np.array([[0, 0, 0, 0, 1],
+              [0.5, 0, 0, 0, 0.5],
+              [0.5, 0, 0, 0, 0.5],
+              [0, 1, 0.5, 0, 0],
+              [0, 0, 0.5, 1, 0]])
+v = pagerank(M, 100, 0.85)
+print("\nTest 2: Graph with multiple outgoing edges")
+print("Expected: [0.2941, 0.2059, 0.2059, 0.2941, 0.1429]")
+print("Actual: ", v.flatten())
+
+# Test 3: Graph with no outgoing edges
+M = np.array([[0, 0, 0, 0, 1],
+              [0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0]])
+v = pagerank(M, 100, 0.85)
+print("\nTest 3: Graph with no outgoing edges")
+print("Expected: [0.2, 0.2, 0.2, 0.2, 0.2]")
+print("Actual: ", v.flatten())
+
+# Test 4: Graph with self-loops
+M = np.array([[0, 0, 0, 0, 1],
+              [0, 0, 0, 0, 0.5],
+              [0, 0, 0, 0, 0.5],
+              [0, 0, 0, 0, 0],
+              [0.5, 0.5, 0.5, 0.5, 0]])
+v = pagerank(M, 100, 0.85)
+print("\nTest 4: Graph with self-loops")
+print("Expected: [0.2727, 0.2727, 0.2727, 0.2727, 0.1818]")
+print("Actual: ", v.flatten())

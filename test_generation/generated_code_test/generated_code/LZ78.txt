@@ -1,0 +1,25 @@
+def lz78_encode(input_string):
+    dictionary = {}
+    output = []
+    last_index = 0
+    for index, char in enumerate(input_string):
+        if input_string[last_index:index+1] in dictionary:
+            continue
+        else:
+            if last_index!= 0:
+                output.append((input_string[last_index:index], last_index))
+            output.append((char, index+1))
+            dictionary[input_string[last_index:index+1]] = index+1
+            last_index = index+1
+    return output
+
+def lz78_decode(input_list):
+    dictionary = {}
+    output = ""
+    for item in input_list:
+        if item[0] in dictionary:
+            output += dictionary[item[0]]
+        else:
+            output += item[0]
+            dictionary[item[1]] = output[-1]
+    return output

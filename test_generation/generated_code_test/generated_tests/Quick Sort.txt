@@ -1,0 +1,11 @@
+def test_quick_sort():
+    assert quick_sort([]) == []
+    assert quick_sort([1]) == [1]
+    assert quick_sort([3, 2, 1]) == [1, 2, 3]
+    assert quick_sort([1, 2, 3]) == [1, 2, 3]
+    assert quick_sort([2, 2, 2, 2, 2]) == [2, 2, 2, 2, 2]
+    assert quick_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert quick_sort(['b', 'a', 'c']) == ['a', 'b', 'c']
+    assert quick_sort(['apple', 'banana', 'pear', 'kiwi']) == ['apple', 'banana', 'kiwi', 'pear']
+
+test_quick_sort()

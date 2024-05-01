@@ -1,0 +1,8 @@
+def newton_method(func, derivative, x0, epsilon, max_iter):
+    x = x0
+    for _ in range(max_iter):
+        x_new = x - func(x) / derivative(x)
+        if abs(x_new - x) < epsilon:
+            return x_new
+        x = x_new
+    return x

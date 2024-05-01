@@ -1,0 +1,28 @@
+def test_huffman_coding():
+    # Test case 1: Simple message
+    message = "ABC"
+    expected_encoded_message = "000111"
+    expected_huffman_dict = {'A': '00', 'B': '01', 'C': '1'}
+    encoded_message, huffman_dict = huffman_coding(message)
+    assert encoded_message == expected_encoded_message, f"Expected {expected_encoded_message}, but got {encoded_message}"
+    assert huffman_dict == expected_huffman_dict, f"Expected {expected_huffman_dict}, but got {huffman_dict}"
+
+    # Test case 2: Message with repeated characters
+    message = "AAABBBCC"
+    expected_encoded_message = "000111"
+    expected_huffman_dict = {'A': '00', 'B': '01', 'C': '1'}
+    encoded_message, huffman_dict = huffman_coding(message)
+    assert encoded_message == expected_encoded_message, f"Expected {expected_encoded_message}, but got {encoded_message}"
+    assert huffman_dict == expected_huffman_dict, f"Expected {expected_huffman_dict}, but got {huffman_dict}"
+
+    # Test case 3: Message with special characters
+    message = "!@#$%^&*()_+"
+    expected_encoded_message = "000111"  # assuming similar encoding as above
+    expected_huffman_dict = {'!': '00', '@': '01', '#': '1'}  # assuming similar encoding as above
+    encoded_message, huffman_dict = huffman_coding(message)
+    assert encoded_message == expected_encoded_message, f"Expected {expected_encoded_message}, but got {encoded_message}"
+    assert huffman_dict == expected_huffman_dict, f"Expected {expected_huffman_dict}, but got {huffman_dict}"
+
+    print("All tests passed!")
+
+test_huffman_coding()

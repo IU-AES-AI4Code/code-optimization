@@ -1,0 +1,62 @@
+def test_in_order_traversal():
+    # Test with a simple binary tree
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+
+    # Capture the output of the in-order traversal
+    import io
+    import sys
+    buffer = io.StringIO()
+    sys.stdout = buffer
+    in_order_traversal(root)
+    sys.stdout = sys.__stdout__
+
+    # Check the output
+    assert buffer.getvalue() == "4\n2\n5\n1\n3\n"
+
+    # Test with a binary tree with only a right child
+    root = Node(1)
+    root.right = Node(2)
+    root.right.right = Node(3)
+
+    # Capture the output of the in-order traversal
+    buffer = io.StringIO()
+    sys.stdout = buffer
+    in_order_traversal(root)
+    sys.stdout = sys.__stdout__
+
+    # Check the output
+    assert buffer.getvalue() == "1\n3\n2\n"
+
+    # Test with a binary tree with only a left child
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left = Node(3)
+
+    # Capture the output of the in-order traversal
+    buffer = io.StringIO()
+    sys.stdout = buffer
+    in_order_traversal(root)
+    sys.stdout = sys.__stdout__
+
+    # Check the output
+    assert buffer.getvalue() == "3\n2\n1\n"
+
+    # Test with a binary tree with no children
+    root = Node(1)
+
+    # Capture the output of the in-order traversal
+    buffer = io.StringIO()
+    sys.stdout = buffer
+    in_order_traversal(root)
+    sys.stdout = sys.__stdout__
+
+    # Check the output
+    assert buffer.getvalue() == "1\n"
+
+    print("All tests passed.")
+
+test_in_order_traversal()

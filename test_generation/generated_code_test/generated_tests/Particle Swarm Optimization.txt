@@ -1,0 +1,24 @@
+def objective_function(x):
+    return sum(i**2 for i in x)
+
+n_particles = 50
+n_iterations = 100
+n_dimensions = 3
+lb = -10
+ub = 10
+w = 0.7
+c1 = 2
+c2 = 2
+
+best_position, history = PSO(objective_function, n_particles, n_iterations, n_dimensions, lb, ub, w, c1, c2)
+
+print("Best position: ", best_position)
+print("Best value: ", objective_function(best_position))
+
+import matplotlib.pyplot as plt
+plt.plot(range(n_iterations+1), history)
+plt.xlabel('Iteration')
+plt.ylabel('Objective function value')
+plt.title('Convergence of PSO')
+plt.grid(True)
+plt.show()

@@ -1,0 +1,36 @@
+def test_genetic_programming():
+    # Test generate_parent function
+    parent = generate_parent(len(target))
+    assert len(parent) == len(target)
+    assert all(c in characters for c in parent)
+
+    # Test get_fitness function
+    fitness = get_fitness(target)
+    assert fitness == len(target)
+
+    # Test mutate function
+    mutated = mutate(target)
+    assert mutated!= target
+    assert get_fitness(mutated) >= get_fitness(target)
+
+    # Test display function
+    display(target)  # This will print the target string and its fitness
+
+    # Test the main loop of the program
+    bestParent = target
+    bestFitness = get_fitness(bestParent)
+    while True:
+        child = mutate(bestParent)
+        childFitness = get_fitness(child)
+
+        if bestFitness >= childFitness:
+            continue
+        assert childFitness >= bestFitness
+        if childFitness >= len(bestParent):
+            break
+        bestFitness = childFitness
+        bestParent = child
+
+    print("Test passed!")
+
+test_genetic_programming()

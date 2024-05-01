@@ -1,0 +1,19 @@
+import unittest
+
+class TestBloomFilter(unittest.TestCase):
+    def setUp(self):
+        self.bf = BloomFilter(100, 0.01)
+
+    def test_add_and_check(self):
+        self.bf.add("test")
+        self.assertTrue(self.bf.check("test"))
+        self.assertFalse(self.bf.check("not_test"))
+
+    def test_get_size(self):
+        self.assertEqual(self.bf.get_size(100, 0.01), 94)
+
+    def test_get_hash_count(self):
+        self.assertEqual(self.bf.get_hash_count(94, 100), 4)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,0 +1,24 @@
+import nltk
+import unittest
+
+def pos_tagging(text):
+    text = nltk.word_tokenize(text)
+    return nltk.pos_tag(text)
+
+class TestPOS(unittest.TestCase):
+
+    def setUp(self):
+        nltk.download('punkt')
+        nltk.download('averaged_perceptron_tagger')
+
+    def test_pos_tagging(self):
+        result = pos_tagging("The cat is sleeping")
+        self.assertIsInstance(result, list)  # Check if the result is a list
+        for item in result:
+            self.assertIsInstance(item, tuple)  # Check if each item is a tuple
+            self.assertEqual(len(item), 2)  # Check if each tuple has two elements
+            self.assertIsInstance(item[0], str)  # Check if the first element is a string
+            self.assertIsInstance(item[1], str)  # Check if the second element is a string
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,0 +1,21 @@
+def determinant(matrix):
+    # Get the size of the matrix
+    size = len(matrix)
+
+    # If the matrix is 1x1, return the only element
+    if size == 1:
+        return matrix[0][0]
+
+    # If the matrix is 2x2, return the product of the two elements minus the product of the other two
+    elif size == 2:
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+
+    # If the matrix is larger, use Laplace expansion
+    else:
+        det = 0
+        for c in range(size):
+            # Create a submatrix for the minor
+            submatrix = [row[:c] + row[c+1:] for row in matrix[1:]]
+            # Recursively calculate the determinant
+            det += (-1) ** c * matrix[0][c] * determinant(submatrix)
+        return det

@@ -1,0 +1,28 @@
+def test_lz77():
+    # Test case 1: Simple string
+    input_string1 = "ABCABCAABCABCABCA"
+    encoded1 = LZ77_encode(input_string1)
+    decoded1 = LZ77_decode(encoded1)
+    assert decoded1 == input_string1, f"Test case 1 failed. Expected: {input_string1}, but got: {decoded1}"
+
+    # Test case 2: String with multiple matches
+    input_string2 = "ABCABCAABCABCAABCABCA"
+    encoded2 = LZ77_encode(input_string2)
+    decoded2 = LZ77_decode(encoded2)
+    assert decoded2 == input_string2, f"Test case 2 failed. Expected: {input_string2}, but got: {decoded2}"
+
+    # Test case 3: String with no matches
+    input_string3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    encoded3 = LZ77_encode(input_string3)
+    decoded3 = LZ77_decode(encoded3)
+    assert decoded3 == input_string3, f"Test case 3 failed. Expected: {input_string3}, but got: {decoded3}"
+
+    # Test case 4: String with special characters
+    input_string4 = "!@#$%^&*()_+`~{}|[]\\:<>?,./;'ABCDEFGHIJK"
+    encoded4 = LZ77_encode(input_string4)
+    decoded4 = LZ77_decode(encoded4)
+    assert decoded4 == input_string4, f"Test case 4 failed. Expected: {input_string4}, but got: {decoded4}"
+
+    print("All test cases passed")
+
+test_lz77()

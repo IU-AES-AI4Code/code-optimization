@@ -1,0 +1,31 @@
+def test_bfs():
+    g = Graph()
+    g.add_edge(0, 1)
+    g.add_edge(0, 2)
+    g.add_edge(1, 2)
+    g.add_edge(2, 0)
+    g.add_edge(2, 3)
+    g.add_edge(3, 3)
+
+    # Testing BFS on a graph with multiple connected components
+    assert g.BFS(2) == "2 0 3 1 "
+
+    # Testing BFS on a graph with a single node
+    g = Graph()
+    g.add_edge(0, 0)
+    assert g.BFS(0) == "0 "
+
+    # Testing BFS on a graph with no nodes
+    g = Graph()
+    assert g.BFS(0) == ""
+
+    # Testing BFS on a graph with a disconnected node
+    g = Graph()
+    g.add_edge(0, 1)
+    g.add_edge(2, 3)
+    assert g.BFS(0) == "0 1 "
+    assert g.BFS(2) == "2 3 "
+
+    print("All tests passed.")
+
+test_bfs()

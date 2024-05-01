@@ -1,0 +1,32 @@
+import sys
+import heapq
+
+def shortest_path(graph, start, end):
+    heap = [(0, start)]
+    distances = {node: float('infinity') for node in graph}
+    distances[start] = 0
+    paths = {start: []}
+
+    while heap:
+        (curr_distance, curr_vertex) = heapq.heappop(heap)
+        for neighbor, neighbor_distance in graph[curr_vertex].items():
+            distance = curr_distance + neighbor_distance
+            if distance < distances[neighbor]: 
+                distances[neighbor] = distance
+                paths[neighbor] = paths[curr_vertex] + [neighbor]
+                heapq.heappush(heap, (distance, neighbor))
+
+    return distances[end], paths[end]
+
+# Example usage:
+
+# graph is represented as adjacency list
+graph = {
+    'A': {'B': 1, 'C': 3, 'E': 7},
+    'B': {'D': 5},
+    'C': {'B': 2, 'D': 3},
+    'D': {'E': 4},
+    'E': {'D': 6}
+}
+
+print(shortest_path(graph, 'A', 'D'))  # Output: (4, ['A', 'C', 'D'])

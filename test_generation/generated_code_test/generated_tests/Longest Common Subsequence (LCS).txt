@@ -1,0 +1,12 @@
+def test_LCS():
+    assert LCS("ABCBDAB", "BDCAB") == "BCAB"
+    assert LCS("ABCDEF", "AMNOPQR") == ""
+    assert LCS("12345", "123") == "123"
+    assert LCS("123", "12345") == "123"
+    assert LCS("ABCDEF", "FBDAMN") == "FBDM"
+    assert LCS("ABCDEF", "ABCDEF") == "ABCDEF"
+    assert LCS("", "") == ""
+    assert LCS("", "ABCDEF") == ""
+    assert LCS("ABCDEF", "") == ""
+
+test_LCS()

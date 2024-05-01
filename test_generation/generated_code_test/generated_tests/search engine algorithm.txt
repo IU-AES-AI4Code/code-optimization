@@ -1,0 +1,30 @@
+def test_search_engine():
+    documents = ["Python is a great language",
+                 "Java is also a good language",
+                 "Python is easy to learn",
+                 "Java is object-oriented"]
+
+    # Test case 1: Query is at the beginning of the document
+    assert search_engine(documents, "Python is") == [(2, "Python is easy to learn")]
+
+    # Test case 2: Query is at the end of the document
+    assert search_engine(documents, "object-oriented") == [(3, "Java is object-oriented")]
+
+    # Test case 3: Query is in the middle of the document
+    assert search_engine(documents, "also a good") == [(1, "Java is also a good language")]
+
+    # Test case 4: Query is not in any document
+    assert search_engine(documents, "C++") == []
+
+    # Test case 5: Query is case-insensitive
+    assert search_engine(documents, "java") == [(1, "Java is also a good language"), (3, "Java is object-oriented")]
+
+    # Test case 6: Empty query returns all documents
+    assert search_engine(documents, "") == [(0, "Python is a great language"), 
+                                            (1, "Java is also a good language"), 
+                                            (2, "Python is easy to learn"), 
+                                            (3, "Java is object-oriented")]
+
+    print("All tests passed!")
+
+test_search_engine()

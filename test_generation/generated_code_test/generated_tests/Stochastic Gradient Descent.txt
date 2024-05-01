@@ -1,0 +1,22 @@
+import numpy as np
+
+def test_stochastic_gradient_descent():
+    # Test data
+    X = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6], [0.7, 0.8], [0.9, 1.0]])
+    y = np.array([0, 0, 0, 1, 1])
+
+    # Run SGD
+    weights, bias = stochastic_gradient_descent(X, y, epochs=1000, lr=0.01)
+
+    # Check that weights and bias are approximately correct
+    assert np.allclose(weights, np.array([0.1, 0.2]), atol=0.1), "Weights are not close enough"
+    assert np.allclose(bias, 0.3, atol=0.1), "Bias is not close enough"
+
+    # Check that the model predicts the correct labels
+    for i in range(len(X)):
+        y_pred = sigmoid(np.dot(weights, X[i]) + bias)
+        assert np.allclose(y_pred, y[i], atol=0.1), f"Prediction for {X[i]} is not close enough"
+
+    print("All tests passed!")
+
+test_stochastic_gradient_descent()

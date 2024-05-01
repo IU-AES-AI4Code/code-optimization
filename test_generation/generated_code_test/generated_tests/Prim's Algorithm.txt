@@ -1,0 +1,44 @@
+def test_prim_mst():
+    # Test with a simple graph
+    graph = [
+        [0, 2, 0, 6, 0],
+        [2, 0, 3, 8, 5],
+        [0, 3, 0, 0, 7],
+        [6, 8, 0, 0, 9],
+        [0, 5, 7, 9, 0]
+    ]
+    mst = prim_mst(graph)
+    assert len(mst) == 4
+    assert (0, 1, 2) in mst
+    assert (1, 2, 3) in mst
+    assert (2, 3, 6) in mst
+    assert (3, 4, 5) in mst
+
+    # Test with a graph with multiple edges between the same vertices
+    graph = [
+        [0, 1, 1, 0, 0],
+        [1, 0, 1, 1, 1],
+        [1, 1, 0, 1, 1],
+        [0, 1, 1, 0, 1],
+        [0, 1, 1, 1, 0]
+    ]
+    mst = prim_mst(graph)
+    assert len(mst) == 4
+    assert (0, 1, 1) in mst
+    assert (1, 2, 1) in mst
+    assert (2, 3, 1) in mst
+    assert (3, 4, 1) in mst
+
+    # Test with a graph with a single vertex
+    graph = [[0]]
+    mst = prim_mst(graph)
+    assert len(mst) == 0
+
+    # Test with a graph with no edges
+    graph = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    mst = prim_mst(graph)
+    assert len(mst) == 0
+
+    print("All tests passed.")
+
+test_prim_mst()

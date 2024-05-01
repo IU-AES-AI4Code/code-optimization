@@ -1,0 +1,15 @@
+def test_vigenere_cipher():
+    assert vigenere_cipher("hello", "key") == "rijvs"
+    assert vigenere_cipher("world", "key") == "gnenum"
+    assert vigenere_cipher("hello world", "key") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "keykey") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "keykeykey") == "rijvs gnumem"
+    assert vigenere_cipher("HELLO WORLD", "KEY") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "KEY") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "keyKEY") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "KEYkey") == "rijvs gnumem"
+    assert vigenere_cipher("hello world", "") == "hello world"
+    assert vigenere_cipher("", "key") == ""
+    assert vigenere_cipher("", "") == ""
+
+test_vigenere_cipher()

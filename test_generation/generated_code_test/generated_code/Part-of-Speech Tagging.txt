@@ -1,0 +1,7 @@
+import nltk
+
+def pos_tagging(text):
+    text = nltk.word_tokenize(text)
+    return nltk.pos_tag(text)
+
+print(pos_tagging("The cat is sleeping"))

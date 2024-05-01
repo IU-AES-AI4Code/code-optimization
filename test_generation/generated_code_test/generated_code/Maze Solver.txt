@@ -1,0 +1,13 @@
+def solve_maze(maze):
+    start = (0, 0)
+    end = (len(maze)-1, len(maze[0])-1)
+    stack = [(start, [start])]
+    while stack:
+        (x, y), path = stack.pop()
+        if (x, y) == end:
+            return path
+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 1 and (nx, ny) not in path:
+                stack.append(((nx, ny), path + [(nx, ny)]))
+    return None

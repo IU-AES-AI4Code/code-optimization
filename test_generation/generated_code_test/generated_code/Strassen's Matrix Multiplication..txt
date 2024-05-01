@@ -1,0 +1,30 @@
+def strassen(A, B):
+    # Base case: if the matrices are 1x1
+    if len(A) == 1:
+        return [[A[0][0] * B[0][0]]]
+
+    # Split the matrices into 4 sub-matrices
+    mid = len(A) // 2
+    a11, a12, a21, a22 = A[:mid], A[mid:], A[:mid], A[mid:]
+    b11, b12, b21, b22 = B[:mid], B[mid:], B[:mid], B[mid:]
+
+    # Recursive calls for the seven products
+    p1 = strassen(a11, b12)
+    p2 = strassen(a12, b22)
+    p3 = strassen(a21, b11)
+    p4 = strassen(a22, b21)
+    p5 = strassen(a11, b11)
+    p6 = strassen(a22, b22)
+    p7 = strassen(a12, b21)
+    p8 = strassen(a21, b12)
+
+    # Combine the results
+    C = [[0] * len(A) for _ in range(len(A))]
+    for i in range(mid):
+        for j in range(mid):
+            C[i][j] = p5[i][j] + p4[i][j] - p2[i][j] + p6[i][j]
+            C[i][j + mid] = p1[i][j] + p2[i][j]
+            C[i + mid][j] = p3[i][j] + p4[i][j]
+            C[i + mid][j + mid] = p1[i][j] + p5[i][j] - p3[i][j] - p7[i][j]
+
+    return C

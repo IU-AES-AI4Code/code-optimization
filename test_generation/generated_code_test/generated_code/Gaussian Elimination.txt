@@ -1,0 +1,33 @@
+def gaussian_elimination(matrix):
+    # Convert to float
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            matrix[i][j] = float(matrix[i][j])
+
+    # Perform Gaussian elimination
+    for i in range(len(matrix)):
+        # Find the maximum in this column
+        max_el = abs(matrix[i][i])
+        max_row = i
+        for k in range(i+1, len(matrix)):
+            if abs(matrix[k][i]) > max_el:
+                max_el = abs(matrix[k][i])
+                max_row = k
+
+        # Swap the maximum row with the current row (column by column)
+        for k in range(i, len(matrix[i])):
+            matrix[i][k], matrix[max_row][k] = matrix[max_row][k], matrix[i][k]
+
+        # Make all rows below this one 0 in the current column
+        for k in range(i+1, len(matrix)):
+            c = -matrix[k][i] / matrix[i][i]
+            for j in range(i, len(matrix[k])):
+                matrix[k][j] += c * matrix[i][j]
+
+    # Solve equation Ax=b for an upper triangular matrix A
+    for i in range(len(matrix)-1, -1, -1):
+        matrix[i][-1] /= matrix[i][i]
+        for k in range(i-1, -1, -1):
+            matrix[k][-1] -= matrix[k][i] * matrix[i][-1]
+
+    return [row[-1] for row in matrix]

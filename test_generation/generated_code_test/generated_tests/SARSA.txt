@@ -1,0 +1,22 @@
+import gym
+
+# Create FrozenLake environment
+env = gym.make('FrozenLake-v0')
+
+# Run SARSA algorithm
+Q = sarsa(env)
+
+# Test the learned policy
+total_rewards = []
+for i in range(100):
+    state = env.reset()
+    total_reward = 0
+    while True:
+        action = np.argmax(Q[state, :])
+        state, reward, done, _ = env.step(action)
+        total_reward += reward
+        if done:
+            total_rewards.append(total_reward)
+            break
+
+print(f"Average reward over 100 episodes: {np.mean(total_rewards)}")

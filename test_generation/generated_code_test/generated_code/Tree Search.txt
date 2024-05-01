@@ -1,0 +1,13 @@
+class Node:
+    def __init__(self, value, children=None):
+        self.value = value
+        self.children = children if children is not None else []
+
+def tree_search(root, goal):
+    queue = [root]
+    while queue:
+        node = queue.pop(0)
+        if node.value == goal:
+            return True
+        queue.extend(node.children)
+    return False

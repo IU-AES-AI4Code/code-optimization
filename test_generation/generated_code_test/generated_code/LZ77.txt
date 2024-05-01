@@ -1,0 +1,39 @@
+def LZ77_encode(input_string):
+    output = []
+    dictionary_size = 4096
+    lookahead_buffer_size = 1024
+    dictionary = [''] * dictionary_size
+    input_string += '\0'
+    input_length = len(input_string)
+    buffer = input_string[0:lookahead_buffer_size]
+    next_char = 0
+    while next_char < input_length:
+        best_match_length = 0
+        best_match_offset = 0
+        for i in range(min(len(buffer), dictionary_size)):
+            match_length = 0
+            while (next_char + match_length < input_length and
+                    buffer[i + match_length] == input_string[next_char + match_length]):
+                match_length += 1
+            if match_length > best_match_length:
+                best_match_length = match_length
+                best_match_offset = len(buffer) - i
+        if best_match_length == 0:
+            output.append((0, buffer[0], 1))
+            buffer = buffer[1:] + input_string[next_char]
+            next_char += 1
+        else:
+            output.append((best_match_offset, input_string[next_char + best_match_length], best_match_length))
+            buffer = buffer[best_match_length:] + input_string[next_char:next_char + best_match_length]
+            next_char += best_match_length
+    return output
+
+def LZ77_decode(input_list):
+    output = ''
+    dictionary_size = 4096
+    dictionary = [''] * dictionary_size
+    for offset, char, length in input_list:
+        for i in range(length):
+            output += char
+            dictionary[(offset + i) % dictionary_size] = char
+    return output

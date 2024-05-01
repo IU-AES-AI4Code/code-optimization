@@ -1,0 +1,10 @@
+def vigenere_cipher(text, key):
+    key = key.lower()
+    key_length = len(key)
+    key_ascii = [ord(i) for i in key]
+    text_ascii = [ord(i) for i in text.lower()]
+    ciphertext = ''
+    for i in range(len(text_ascii)):
+        value = (text_ascii[i] + key_ascii[i % key_length]) % 26
+        ciphertext += chr(value + 97)
+    return ciphertext

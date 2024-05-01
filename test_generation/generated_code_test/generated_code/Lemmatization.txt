@@ -1,0 +1,11 @@
+import nltk
+from nltk.stem import WordNetLemmatizer
+
+def lemmatize_text(text):
+    lemmatizer = WordNetLemmatizer()
+    words = nltk.word_tokenize(text)
+    lemmatized_text = [lemmatizer.lemmatize(word) for word in words]
+    return''.join(lemmatized_text)
+
+text = "Studies studying cries cried"
+print(lemmatize_text(text))

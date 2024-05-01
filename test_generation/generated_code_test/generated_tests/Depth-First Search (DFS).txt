@@ -1,0 +1,48 @@
+def test_dfs():
+    g = Graph()
+    g.add_edge('A', 'B')
+    g.add_edge('A', 'C')
+    g.add_edge('B', 'D')
+    g.add_edge('B', 'E')
+    g.add_edge('C', 'F')
+    g.add_edge('C', 'G')
+
+    visited = set()
+    g.dfs('A', visited)
+    assert visited == {'A', 'B', 'D', 'E', 'C', 'F', 'G'}
+
+    g.add_edge('D', 'H')
+    g.add_edge('H', 'I')
+    g.add_edge('I', 'J')
+
+    visited = set()
+    g.dfs('A', visited)
+    assert visited == {'A', 'B', 'D', 'E', 'C', 'F', 'G', 'H', 'I', 'J'}
+
+    g.add_edge('K', 'L')
+    g.add_edge('K', 'M')
+
+    visited = set()
+    g.dfs('K', visited)
+    assert visited == {'K', 'L', 'M'}
+
+    visited = set()
+    g.dfs('X', visited)  # 'X' is not in the graph
+    assert visited == set()
+
+    g.add_edge('N', 'O')
+    g.add_edge('N', 'P')
+    g.add_edge('O', 'Q')
+    g.add_edge('Q', 'R')
+    g.add_edge('R', 'N')  # creates a cycle
+
+    visited = set()
+    g.dfs('N', visited)
+    assert visited == {'N', 'O', 'P', 'Q', 'R'}
+
+    visited = set()
+    g.dfs('S', visited)  # 'S' is not connected to any node
+    assert visited == set()
+
+print("All tests passed.")
+test_dfs()

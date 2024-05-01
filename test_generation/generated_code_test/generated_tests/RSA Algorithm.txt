@@ -1,0 +1,15 @@
+def test_rsa():
+    p = 13
+    q = 19
+    public, private = generate_keypair(p, q)
+    message = "Hello, World!"
+    encrypted_message = encrypt(public, message)
+    decrypted_message = decrypt(private, encrypted_message)
+
+    print("Public Key: ", public)
+    print("Private Key: ", private)
+    print("Original Message: ", message)
+    print("Encrypted Message: ", encrypted_message)
+    print("Decrypted Message: ", decrypted_message)
+
+test_rsa()

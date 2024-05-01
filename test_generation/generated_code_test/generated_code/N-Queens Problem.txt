@@ -1,0 +1,22 @@
+def solve_n_queens(n):
+    def can_place(pos, ocuppied_rows):
+        for i in range(len(ocuppied_rows)):
+            if ocuppied_rows[i] == pos or \
+                ocuppied_rows[i] - i == pos or \
+                ocuppied_rows[i] + i == pos:
+                return False
+        return True
+
+    def place_queen(n, ocuppied_rows, results):
+        if n == len(ocuppied_rows):
+            results.append(ocuppied_rows[:])
+            return
+        for i in range(n):
+            if can_place(i, ocuppied_rows):
+                ocuppied_rows.append(i)
+                place_queen(n, ocuppied_rows, results)
+                ocuppied_rows.pop()
+
+    results = []
+    place_queen(n, [], results)
+    return results

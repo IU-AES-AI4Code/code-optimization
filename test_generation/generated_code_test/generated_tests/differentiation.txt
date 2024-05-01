@@ -1,0 +1,24 @@
+def test_differentiate():
+    # Test case 1: Simple quadratic function
+    coefficients = [3, 2, 1]  # represents 3x^2 + 2x + 1
+    assert differentiate(coefficients) == [6, 1]
+
+    # Test case 2: Linear function
+    coefficients = [2, 1]  # represents 2x + 1
+    assert differentiate(coefficients) == [2]
+
+    # Test case 3: Constant function
+    coefficients = [5]  # represents 5
+    assert differentiate(coefficients) == []
+
+    # Test case 4: Function with multiple terms
+    coefficients = [4, 3, 2, 1]  # represents 4x^3 + 3x^2 + 2x + 1
+    assert differentiate(coefficients) == [12, 6, 2]
+
+    # Test case 5: Function with negative coefficients
+    coefficients = [3, -2, 1]  # represents 3x^2 - 2x + 1
+    assert differentiate(coefficients) == [6, -2]
+
+    print("All tests passed.")
+
+test_differentiate()

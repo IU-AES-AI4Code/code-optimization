@@ -1,0 +1,54 @@
+def test_shortest_path():
+    # Test with a simple graph
+    graph = {
+        'A': {'B': 1, 'C': 3, 'E': 7},
+        'B': {'D': 5},
+        'C': {'B': 2, 'D': 3},
+        'D': {'E': 4},
+        'E': {'D': 6}
+    }
+    assert shortest_path(graph, 'A', 'D') == (4, ['A', 'C', 'D'])
+
+    # Test with a graph where the start node is the same as the end node
+    graph = {
+        'A': {'B': 1, 'C': 3, 'E': 7},
+        'B': {'D': 5},
+        'C': {'B': 2, 'D': 3},
+        'D': {'E': 4},
+        'E': {'D': 6}
+    }
+    assert shortest_path(graph, 'A', 'A') == (0, ['A'])
+
+    # Test with a graph where there is no path between the start and end nodes
+    graph = {
+        'A': {'B': 1, 'C': 3, 'E': 7},
+        'B': {'D': 5},
+        'C': {'B': 2, 'D': 3},
+        'D': {'E': 4},
+        'E': {'D': 6}
+    }
+    assert shortest_path(graph, 'A', 'F') == (float('inf'), [])
+
+    # Test with a graph where there are multiple shortest paths
+    graph = {
+        'A': {'B': 1, 'C': 3, 'E': 7},
+        'B': {'D': 5},
+        'C': {'B': 2, 'D': 3},
+        'D': {'E': 4},
+        'E': {'D': 6}
+    }
+    assert shortest_path(graph, 'A', 'D') == (4, ['A', 'C', 'D'])
+
+    # Test with a graph where the graph has a cycle
+    graph = {
+        'A': {'B': 1, 'C': 3, 'E': 7},
+        'B': {'D': 5},
+        'C': {'B': 2, 'D': 3},
+        'D': {'E': 4},
+        'E': {'A': 6}
+    }
+    assert shortest_path(graph, 'A', 'D') == (4, ['A', 'C', 'D'])
+
+    print("All tests passed.")
+
+test_shortest_path()

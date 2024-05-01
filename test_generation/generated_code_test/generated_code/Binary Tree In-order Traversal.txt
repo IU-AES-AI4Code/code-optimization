@@ -1,0 +1,26 @@
+class Node:
+    def __init__(self, value):
+        self.left = None
+        self.right = None
+        self.value = value
+
+def in_order_traversal(node):
+    if node:
+        # First recur on left child
+        in_order_traversal(node.left)
+
+        # Then print the data of node
+        print(node.value)
+
+        # Now recur on right child
+        in_order_traversal(node.right)
+
+# Usage
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print("In-order traversal of the binary tree is")
+in_order_traversal(root)

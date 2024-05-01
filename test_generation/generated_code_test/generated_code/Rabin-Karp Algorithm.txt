@@ -1,0 +1,26 @@
+def rabin_karp(text, pattern, d, q):
+    n = len(text)
+    m = len(pattern)
+    h = (d**(m-1))%q
+    p = 0
+    t = 0
+    pattern_hash = 0
+    text_hash = 0
+    for i in range(m):
+        p = (d*p + ord(pattern[i]))%q
+        t = (d*t + ord(text[i]))%q
+    for i in range(m-1):
+        text_hash = (d*(text_hash + ord(text[i])*h) + ord(text[i+m]))%q
+    for i in range(n-m+1):
+        if p == text_hash:
+            for j in range(m):
+                if text[i+j]!= pattern[j]:
+                    break
+            j += 1
+            if j == m:
+                return i
+        if i < n-m:
+            text_hash = (d*(text_hash - ord(text[i])*h) + ord(text[i+m]))%q
+            if text_hash < 0:
+                text_hash = text_hash + q
+    return -1

@@ -1,0 +1,8 @@
+import re
+
+def find_word(word, text):
+    return re.findall(r'\b'+word+r'\b', text, re.I)
+
+text = "Hello, this is a test. This test is just a test."
+word = "test"
+print(find_word(word, text))

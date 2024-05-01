@@ -1,0 +1,30 @@
+def test_determinant():
+    # Test 1x1 matrix
+    assert determinant([[3]]) == 3
+
+    # Test 2x2 matrix
+    assert determinant([[1, 2], [3, 4]]) == -2
+
+    # Test 3x3 matrix
+    assert determinant([[2, 3, 4], [1, 2, 3], [5, 6, 0]]) == -2
+
+    # Test 4x4 matrix
+    assert determinant([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]) == 0
+
+    # Test non-square matrix
+    try:
+        determinant([[1, 2, 3], [4, 5, 6]])
+        assert False, "Expected error for non-square matrix"
+    except ValueError:
+        pass
+
+    # Test non-numeric elements
+    try:
+        determinant([[1, 2, 'a'], [4, 5, 6], [7, 8, 9]])
+        assert False, "Expected error for non-numeric elements"
+    except TypeError:
+        pass
+
+    print("All tests passed!")
+
+test_determinant()

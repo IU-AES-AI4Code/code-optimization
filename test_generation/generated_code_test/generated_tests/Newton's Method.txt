@@ -1,0 +1,47 @@
+def f(x):
+    return x**2 - 2
+
+def f_prime(x):
+    return 2*x
+
+# Test 1: Root of x^2 - 2 = 0 is approximately 1.41421356237
+x0 = 1.5
+epsilon = 0.00001
+max_iter = 10000
+root = newton_method(f, f_prime, x0, epsilon, max_iter)
+print(f"The root of the function is approximately {root}")
+assert abs(root - 1.41421356237) < epsilon, "Test 1 failed"
+
+# Test 2: Root of x^2 - 2 = 0 is approximately -1.41421356237
+x0 = -1.5
+root = newton_method(f, f_prime, x0, epsilon, max_iter)
+print(f"The root of the function is approximately {root}")
+assert abs(root + 1.41421356237) < epsilon, "Test 2 failed"
+
+# Test 3: Test with a function that has no root
+def g(x):
+    return x**3 - 1
+
+def g_prime(x):
+    return 3*x**2
+
+x0 = 1.5
+# This function has no root, so the function should raise a ValueError
+try:
+    root = newton_method(g, g_prime, x0, epsilon, max_iter)
+    print(f"The root of the function is approximately {root}")
+except ValueError as e:
+    print("Test 3 passed:", e)
+
+# Test 4: Test with a function that has multiple roots
+def h(x):
+    return (x-1)*(x-2)*(x-3)
+
+def h_prime(x):
+    return (x-2)*(x-3) + (x-1)*(x-3) + (x-1)*(x-2)
+
+x0 = 1.5
+# This function has multiple roots, so the function should return a root that is not a root of the function
+root = newton_method(h, h_prime, x0, epsilon, max_iter)
+print(f"The root of the function is approximately {root}")
+assert abs(h(root)) > epsilon, "Test 4 failed"

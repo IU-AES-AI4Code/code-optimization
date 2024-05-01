@@ -1,0 +1,27 @@
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
+
+def aes_encrypt(plaintext, key):
+    cipher = AES.new(key, AES.MODE_ECB)
+    ciphertext = cipher.encrypt(pad(plaintext))
+    return ciphertext
+
+def aes_decrypt(ciphertext, key):
+    cipher = AES.new(key, AES.MODE_ECB)
+    plaintext = unpad(cipher.decrypt(ciphertext), AES.block_size)
+    return plaintext
+
+# Generate a random 256-bit key
+key = get_random_bytes(32)
+
+# Your plaintext message
+plaintext = b"Hello, World!"
+
+# Encrypt the message
+ciphertext = aes_encrypt(plaintext, key)
+print("Ciphertext:", ciphertext.hex())
+
+# Decrypt the message
+decrypted = aes_decrypt(ciphertext, key)
+print("Decrypted:", decrypted.decode())

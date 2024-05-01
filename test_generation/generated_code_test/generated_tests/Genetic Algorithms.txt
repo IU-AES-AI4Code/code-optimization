@@ -1,0 +1,35 @@
+def test_genetic_algorithm():
+    # Test the random_string function
+    assert len(random_string(13)) == 13
+    assert all(c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.!' for c in random_string(13))
+
+    # Test the fitness function
+    assert fitness('Hello, World!', 'Hello, World!') == 13
+    assert fitness('Hello, World!', 'Hello, Python!') == 5
+
+    # Test the crossover function
+    parent1 = 'Hello, World!'
+    parent2 = 'Python, World!'
+    child1, child2 = crossover(parent1, parent2)
+    assert len(child1) == len(parent1)
+    assert len(child2) == len(parent2)
+    assert child1!= child2
+
+    # Test the mutate function
+    child = 'Hello, World!'
+    mutated_child = mutate(child)
+    assert len(mutated_child) == len(child)
+    assert mutated_child!= child
+
+    # Test the evolve function
+    population = [random_string(13) for _ in range(100)]
+    new_population = evolve(population, 'Hello, World!')
+    assert len(new_population) == len(population)
+    assert all(len(individual) == 13 for individual in new_population)
+
+    # Test the genetic_algorithm function
+    result = genetic_algorithm()
+    assert len(result) == 13
+    assert all(c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.!' for c in result)
+
+test_genetic_algorithm()

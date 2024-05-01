@@ -1,0 +1,21 @@
+def cost_function(state):
+    return sum(x**2 for x in state)
+
+def random_neighbor(state):
+    index = random.randint(0, len(state) - 1)
+    neighbor = list(state)
+    neighbor[index] = neighbor[index] + random.uniform(-1, 1)
+    return neighbor
+
+def accept_next_state(current_cost, next_cost, temperature):
+    return next_cost < current_cost or random.random() < math.exp((current_cost - next_cost) / temperature)
+
+def linear_temperature_schedule(initial_temperature, final_temperature, steps):
+    return [initial_temperature + (final_temperature - initial_temperature) * i / steps for i in range(steps)]
+
+# Test the simulated annealing function
+initial_state = [0, 0, 0]
+temperature_schedule = linear_temperature_schedule(100, 0.01, 100)
+result = simulated_annealing(initial_state, cost_function, temperature_schedule)
+print("Optimized state:", result)
+print("Optimized cost:", cost_function(result))

@@ -1,0 +1,31 @@
+from textblob import TextBlob
+import nltk
+
+# Download required NLTK corpora
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+
+def sentiment_analysis(text):
+    blob = TextBlob(text)
+    return blob.sentiment.polarity
+
+# Testing the function with different sentences
+
+# Positive sentiment
+print(sentiment_analysis("I love this product!"))  # Expected output: > 0
+
+# Neutral sentiment
+print(sentiment_analysis("This product is okay."))  # Expected output: = 0
+
+# Negative sentiment
+print(sentiment_analysis("I hate this product!"))  # Expected output: < 0
+
+# Mixed sentiment
+print(sentiment_analysis("I love this product, but it's too expensive!"))  # Expected output: > 0
+
+# Empty string
+print(sentiment_analysis(""))  # Expected output: = 0
+
+# Null string
+print(sentiment_analysis(None))  # Expected output: Error

@@ -1,0 +1,17 @@
+def test_rabin_karp():
+    assert rabin_karp("hello world", "lo", 26, 101) == 3
+    assert rabin_karp("hello world", "world", 26, 101) == 6
+    assert rabin_karp("hello world", "missing", 26, 101) == -1
+    assert rabin_karp("a", "a", 26, 101) == 0
+    assert rabin_karp("abc", "b", 26, 101) == 1
+    assert rabin_karp("abc", "c", 26, 101) == 2
+    assert rabin_karp("abc", "d", 26, 101) == -1
+    assert rabin_karp("aaa", "a", 26, 101) == 0
+    assert rabin_karp("abcabc", "abc", 26, 101) == 0
+    assert rabin_karp("abcabc", "bca", 26, 101) == 1
+    assert rabin_karp("abcabc", "cab", 26, 101) == 1
+    assert rabin_karp("abcabc", "abcabc", 26, 101) == 0
+    assert rabin_karp("abcabc", "abcabd", 26, 101) == -1
+    print("All tests passed.")
+
+test_rabin_karp()

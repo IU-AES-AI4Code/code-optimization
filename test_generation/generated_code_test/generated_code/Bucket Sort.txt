@@ -1,0 +1,22 @@
+def bucket_sort(input_list):
+    # Create empty buckets
+    bucket = []
+    slots = 10
+    for i in range(slots):
+        bucket.append([])
+
+    # Add elements into the buckets
+    for j in input_list:
+        index_b = int(slots * j)
+        bucket[index_b].append(j)
+
+    # Sort the elements of each bucket
+    for i in range(slots):
+        bucket[i] = sorted(bucket[i])
+
+    # Get the sorted elements
+    sorted_list = []
+    for i in range(slots):
+        sorted_list = sorted_list + bucket[i]
+
+    return sorted_list

@@ -1,0 +1,48 @@
+def test_ner():
+    assert ner("Apple is looking at buying U.K. startup for $1 billion") == [
+        ('Apple', 'ORG'),
+        ('U.K.', 'GPE'),
+        ('$1 billion', 'MONEY')
+    ]
+    assert ner("I have a dog named Max") == [
+        ('I', 'PRON'),
+        ('Max', 'PERSON'),
+        ('dog', 'NOUN')
+    ]
+    assert ner("I live in New York") == [
+        ('New York', 'GPE'),
+        ('I', 'PRON')
+    ]
+    assert ner("I went to Paris in 2016") == [
+        ('Paris', 'GPE'),
+        ('2016', 'DATE'),
+        ('I', 'PRON')
+    ]
+    assert ner("I ate an apple") == [
+        ('I', 'PRON'),
+        ('an apple', 'NOUN')
+    ]
+    assert ner("I drive a car") == [
+        ('I', 'PRON'),
+        ('car', 'NOUN')
+    ]
+    assert ner("I love to play football") == [
+        ('I', 'PRON'),
+        ('play', 'VERB'),
+        ('football', 'NOUN')
+    ]
+    assert ner("I am learning Python") == [
+        ('I', 'PRON'),
+        ('Python', 'PRODUCT'),
+        ('learning', 'VERB')
+    ]
+    assert ner("I have a cat") == [
+        ('I', 'PRON'),
+        ('cat', 'NOUN')
+    ]
+    assert ner("I like to swim") == [
+        ('I', 'PRON'),
+        ('swim', 'VERB')
+    ]
+
+test_ner()

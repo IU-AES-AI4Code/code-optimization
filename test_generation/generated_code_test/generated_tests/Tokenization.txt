@@ -1,0 +1,50 @@
+import nltk
+import unittest
+
+def tokenize_text(text):
+    tokens = nltk.word_tokenize(text)
+    return tokens
+
+class TestTokenizeText(unittest.TestCase):
+
+    def setUp(self):
+        nltk.download('punkt')
+
+    def test_tokenize_text(self):
+        # Test with a simple sentence
+        text = "Hello, I'm an AI Programming Assistant."
+        expected_output = ["Hello", ",", "I", "'", "m", "an", "AI", "Programming", "Assistant", "."]
+        self.assertEqual(tokenize_text(text), expected_output)
+
+        # Test with a sentence containing punctuation and capital letters
+        text = "This is a Comprehensive Test for the NLTK Tokenizer."
+        expected_output = ["This", "is", "a", "Comprehensive", "Test", "for", "the", "NLTK", "Tokenizer", "."]
+        self.assertEqual(tokenize_text(text), expected_output)
+
+        # Test with a sentence containing numbers
+        text = "I have 10 apples."
+        expected_output = ["I", "have", "10", "apples", "."]
+        self.assertEqual(tokenize_text(text), expected_output)
+
+        # Test with an empty string
+        text = ""
+        expected_output = []
+        self.assertEqual(tokenize_text(text), expected_output)
+
+        # Test with a string containing only spaces
+        text = "     "
+        expected_output = []
+        self.assertEqual(tokenize_text(text), expected_output)
+
+    def test_output_type(self):
+        # Test with a simple sentence
+        text = "Hello, I'm an AI Programming Assistant."
+        self.assertIsInstance(tokenize_text(text), list)
+
+    def test_empty_input(self):
+        # Test with an empty string
+        text = ""
+        self.assertEqual(tokenize_text(text), [])
+
+if __name__ == '__main__':
+    unittest.main()

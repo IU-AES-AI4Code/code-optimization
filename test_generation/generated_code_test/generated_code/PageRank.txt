@@ -1,0 +1,20 @@
+import numpy as np
+
+def pagerank(M, num_iterations: int = 100, d: float = 0.85):
+    N = M.shape[1]
+    v = np.random.rand(N, 1)
+    v = v / np.sum(v)
+    iteration = 0
+    while iteration < num_iterations:
+        iteration += 1
+        v = d * np.matmul(M, v) + (1 - d) / N
+    return v
+
+# Example usage:
+M = np.array([[0, 0, 0, 0, 1],
+              [0.5, 0, 0, 0, 0],
+              [0.5, 0, 0, 0, 0],
+              [0, 1, 0.5, 0, 0],
+              [0, 0, 0.5, 1, 0]])
+v = pagerank(M, 100, 0.85)
+print(v)

@@ -1,0 +1,29 @@
+def test_calculate_tfidf():
+    documents = [
+        'This is the first document.',
+        'This document is the second document.',
+        'And this is the third one.',
+        'Is this the first document?'
+    ]
+
+    results = calculate_tfidf(documents)
+
+    # Check if the number of documents is correct
+    assert len(results) == len(documents)
+
+    # Check if the number of words is correct
+    for doc, tfidf_dict in results.items():
+        assert len(tfidf_dict) == len(set(doc.split()))
+
+    # Check if the TF-IDF values are between 0 and 1
+    for doc, tfidf_dict in results.items():
+        for word, tfidf_value in tfidf_dict.items():
+            assert 0 <= tfidf_value <= 1
+
+    # Check if the sum of TF-IDF values for each document is 1
+    for doc, tfidf_dict in results.items():
+        assert abs(sum(tfidf_dict.values()) - 1) < 1e-6
+
+    print("All tests passed.")
+
+test_calculate_tfidf()

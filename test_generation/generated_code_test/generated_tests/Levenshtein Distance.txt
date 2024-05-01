@@ -1,0 +1,18 @@
+def test_levenshtein_distance():
+    assert levenshtein_distance('kitten','sitting') == 3
+    assert levenshtein_distance('', '') == 0
+    assert levenshtein_distance('', 'hello') == 5
+    assert levenshtein_distance('hello', '') == 5
+    assert levenshtein_distance('hello', 'hello') == 0
+    assert levenshtein_distance('hello', 'holla') == 1
+    assert levenshtein_distance('hello', 'hlelo') == 1
+    assert levenshtein_distance('hello', 'hleoo') == 2
+    assert levenshtein_distance('hello', 'h') == 4
+    assert levenshtein_distance('hello', 'he') == 2
+    assert levenshtein_distance('hello', 'heo') == 2
+    assert levenshtein_distance('hello', 'hxello') == 2
+    assert levenshtein_distance('hello', 'hxllo') == 2
+    assert levenshtein_distance('hello', 'hxllox') == 3
+    print("All tests passed.")
+
+test_levenshtein_distance()

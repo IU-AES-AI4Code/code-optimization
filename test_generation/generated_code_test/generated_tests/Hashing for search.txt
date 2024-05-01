@@ -1,0 +1,30 @@
+# Create a new hash table
+ht = HashTable(20)
+
+# Insert some values
+ht.insert(10, 'apple')
+ht.insert(25, 'banana')
+ht.insert(30, 'cherry')
+
+# Test search function
+assert ht.search(10) == 'apple'
+assert ht.search(25) == 'banana'
+assert ht.search(30) == 'cherry'
+
+# Test delete function
+assert ht.delete(25) == True
+assert ht.search(25) == None
+
+# Test insert function with same key
+ht.insert(25, 'apple')
+assert ht.search(25) == 'apple'
+
+# Test delete function with non-existing key
+assert ht.delete(50) == False
+
+# Test hash function
+assert ht.hash_function(10) == 10
+assert ht.hash_function(25) == 5
+assert ht.hash_function(30) == 0
+
+print("All tests passed!")

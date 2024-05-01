@@ -1,0 +1,34 @@
+import numpy as np
+
+def sarsa(env, num_episodes=1000, alpha=0.5, gamma=0.9, epsilon=0.1):
+    # Initialize action-value function (Q) with zeros
+    Q = np.zeros((env.observation_space.n, env.action_space.n))
+    
+    # Loop over episodes
+    for i in range(num_episodes):
+        # Reset environment and get initial state
+        state = env.reset()
+        
+        # Choose action using epsilon-greedy policy
+        action = np.argmax(Q[state, :] + np.random.randn(1, env.action_space.n) * epsilon)
+        
+        # Loop over steps within episode
+        while True:
+            # Take action and observe next state and reward
+            next_state, reward, done, _ = env.step(action)
+            
+            # Choose next action using epsilon-greedy policy
+            next_action = np.argmax(Q[next_state, :] + np.random.randn(1, env.action_space.n) * epsilon)
+            
+            # Update action-value function (Q)
+            Q[state, action] = Q[state, action] + alpha * (reward + gamma * Q[next_state, next_action] - Q[state, action])
+            
+            # Update state and action
+            state = next_state
+            action = next_action
+            
+            # If done, break loop
+            if done:
+                break
+    
+    return Q

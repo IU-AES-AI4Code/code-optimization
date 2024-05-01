@@ -1,0 +1,35 @@
+class Node:
+    def __init__(self, value, children=None):
+        self.value = value
+        self.children = children if children else []
+
+    def is_terminal(self):
+        return len(self.children) == 0
+
+
+def test_minimax():
+    # Test case 1: Maximizing player wins
+    root = Node(0, [Node(1), Node(10), Node(-1)])
+    assert minimax(root, 3, True) == 10
+
+    # Test case 2: Minimizing player wins
+    root = Node(0, [Node(-1), Node(-10), Node(1)])
+    assert minimax(root, 3, False) == -10
+
+    # Test case 3: Draw
+    root = Node(0, [Node(1), Node(-1), Node(0)])
+    assert minimax(root, 3, True) == 0
+
+    # Test case 4: Depth limit
+    root = Node(0, [Node(1), Node(10), Node(-1)])
+    assert minimax(root, 1, True) == 1
+
+    # Test case 5: Terminal node
+    root = Node(10)
+    assert minimax(root, 1, True) == 10
+
+    print("All tests passed.")
+
+
+if __name__ == "__main__":
+    test_minimax()

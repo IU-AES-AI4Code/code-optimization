@@ -1,0 +1,15 @@
+def search_engine(documents, query):
+    results = []
+    for i, document in enumerate(documents):
+        if query.lower() in document.lower():
+            results.append((i, document))
+    return results
+
+documents = ["Python is a great language",
+             "Java is also a good language",
+             "Python is easy to learn",
+             "Java is object-oriented"]
+
+query = "Python"
+
+print(search_engine(documents, query))

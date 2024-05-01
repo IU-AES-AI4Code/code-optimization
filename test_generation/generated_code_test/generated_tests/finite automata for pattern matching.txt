@@ -1,0 +1,11 @@
+def test_finite_automata():
+    assert finite_automata('hi there, how are you today, hey! I hope you are doing well.') == True
+    assert finite_automata('hi there, how are you today, I hope you are doing well.') == False
+    assert finite_automata('hey! I hope you are doing well.') == True
+    assert finite_automata('hi there, how are you today, hey!') == True
+    assert finite_automata('hi there, how are you today, ') == False
+    assert finite_automata('hey!') == True
+    assert finite_automata('I hope you are doing well.') == False
+    assert finite_automata('') == False
+
+test_finite_automata()

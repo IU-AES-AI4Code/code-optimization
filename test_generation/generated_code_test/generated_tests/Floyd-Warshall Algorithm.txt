@@ -1,0 +1,56 @@
+def test_floyd_warshall():
+    # Test 1: Simple graph with positive weights
+    weight1 = [[0, 5, float('inf'), 10],
+               [float('inf'), 0, 3, float('inf')],
+               [float('inf'), float('inf'), 0, 1],
+               [float('inf'), float('inf'), float('inf'), 0]
+              ]
+    expected_distance1 = [[0, 5, 8, 9],
+                          [float('inf'), 0, 3, 4],
+                          [float('inf'), float('inf'), 0, 1],
+                          [float('inf'), float('inf'), float('inf'), 0]
+                         ]
+    expected_next1 = [[0, 1, 2, 3],
+                      [float('inf'), 0, 1, 2],
+                      [float('inf'), float('inf'), 0, 1],
+                      [float('inf'), float('inf'), float('inf'), 0]
+                     ]
+    distance1, next1 = floyd_warshall(weight1)
+    assert distance1 == expected_distance1, f"Expected {expected_distance1}, but got {distance1}"
+    assert next1 == expected_next1, f"Expected {expected_next1}, but got {next1}"
+
+    # Test 2: Simple graph with negative weights
+    weight2 = [[0, 5, float('inf'), -10],
+               [float('inf'), 0, 3, float('inf')],
+               [float('inf'), float('inf'), 0, 1],
+               [float('inf'), float('inf'), float('inf'), 0]
+              ]
+    expected_distance2 = [[0, 5, -5, 0],
+                          [float('inf'), 0, 3, 4],
+                          [float('inf'), float('inf'), 0, 1],
+                          [float('inf'), float('inf'), float('inf'), 0]
+                         ]
+    expected_next2 = [[0, 1, 2, 3],
+                      [float('inf'), 0, 1, 2],
+                      [float('inf'), float('inf'), 0, 1],
+                      [float('inf'), float('inf'), float('inf'), 0]
+                     ]
+    distance2, next2 = floyd_warshall(weight2)
+    assert distance2 == expected_distance2, f"Expected {expected_distance2}, but got {distance2}"
+    assert next2 == expected_next2, f"Expected {expected_next2}, but got {next2}"
+
+    # Test 3: Graph with negative cycle
+    weight3 = [[0, 5, float('inf'), 10],
+               [float('inf'), 0, 3, float('inf')],
+               [float('inf'), float('inf'), 0, 1],
+               [1, -1, float('inf'), 0]
+              ]
+    try:
+        floyd_warshall(weight3)
+        assert False, "Expected ValueError for negative cycle"
+    except ValueError:
+        pass
+
+    print("All tests passed")
+
+test_floyd_warshall()

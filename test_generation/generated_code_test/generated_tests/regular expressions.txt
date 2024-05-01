@@ -1,0 +1,28 @@
+def test_find_word():
+    # Test with a simple sentence
+    assert find_word("test", "This is a test.") == ['test']
+
+    # Test with multiple occurrences of the word
+    assert find_word("test", "This test is just a test.") == ['test', 'test']
+
+    # Test with a word that appears in different cases
+    assert find_word("test", "This TEST is just a test.") == ['TEST', 'test']
+
+    # Test with a word that appears in different cases and punctuation
+    assert find_word("test", "This, TEST! is just a test.") == ['TEST', 'test']
+
+    # Test with a word that appears in different cases and punctuation, but case insensitive
+    assert find_word("Test", "This, test! is just a Test.") == ['test', 'Test']
+
+    # Test with a word that does not appear in the text
+    assert find_word("not_here", "This test is just a test.") == []
+
+    # Test with an empty string
+    assert find_word("", "This test is just a test.") == []
+
+    # Test with a word that appears as part of another word
+    assert find_word("test", "This testing is just a test.") == ['test']
+
+    print("All tests passed.")
+
+test_find_word()

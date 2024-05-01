@@ -1,0 +1,34 @@
+def test_post_order_traversal():
+    # Test with a simple binary tree
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    assert post_order_traversal(root) == [4, 5, 2, 3, 1]
+
+    # Test with a binary tree with only left child
+    root = Node(1)
+    root.left = Node(2)
+    root.left.left = Node(3)
+    root.left.left.left = Node(4)
+    root.left.left.left.left = Node(5)
+    assert post_order_traversal(root) == [5, 4, 3, 2, 1]
+
+    # Test with a binary tree with only right child
+    root = Node(1)
+    root.right = Node(2)
+    root.right.right = Node(3)
+    root.right.right.right = Node(4)
+    root.right.right.right.right = Node(5)
+    assert post_order_traversal(root) == [1, 2, 3, 4, 5]
+
+    # Test with a binary tree with no children
+    root = Node(1)
+    assert post_order_traversal(root) == [1]
+
+    # Test with an empty tree
+    root = None
+    assert post_order_traversal(root) == []
+
+test_post_order_traversal()

@@ -1,0 +1,28 @@
+import nltk
+from nltk.stem import WordNetLemmatizer
+
+def lemmatize_text(text):
+    lemmatizer = WordNetLemmatizer()
+    words = nltk.word_tokenize(text)
+    lemmatized_text = [lemmatizer.lemmatize(word) for word in words]
+    return''.join(lemmatized_text)
+
+# Testing with a simple sentence
+text = "Studies studying cries cried"
+print("Original Text: ", text)
+print("Lemmatized Text: ", lemmatize_text(text))
+
+# Testing with a sentence with punctuation
+text = "Waiting, waiting, and waited."
+print("\nOriginal Text: ", text)
+print("Lemmatized Text: ", lemmatize_text(text))
+
+# Testing with a sentence with different cases
+text = "He eats, ate, and eating."
+print("\nOriginal Text: ", text)
+print("Lemmatized Text: ", lemmatize_text(text))
+
+# Testing with a sentence with multiple words
+text = "The children are playing in the park."
+print("\nOriginal Text: ", text)
+print("Lemmatized Text: ", lemmatize_text(text))

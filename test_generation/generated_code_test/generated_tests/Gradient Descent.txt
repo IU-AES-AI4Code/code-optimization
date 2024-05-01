@@ -1,0 +1,14 @@
+def compute_gradient(x):
+    # For the sake of this example, let's consider a simple function y = x^2
+    # The gradient of this function is 2*x
+    return 2 * x
+
+# Testing the gradient_descent function
+x_start = 5
+learning_rate = 0.1
+num_iterations = 10
+
+result = gradient_descent(x_start, learning_rate, num_iterations)
+print("The minimum value of the function is: ", result)
+
+# The expected result is 0 because the function y = x^2 has a minimum value at x = 0

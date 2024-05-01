@@ -1,0 +1,29 @@
+import numpy as np
+
+def PSO(objective_function, n_particles, n_iterations, n_dimensions, lb, ub, w, c1, c2):
+    # Initialize particles
+    particles = np.random.uniform(low=lb, high=ub, size=(n_particles, n_dimensions))
+    velocities = np.random.uniform(low=-1, high=1, size=(n_particles, n_dimensions))
+    p_best_positions = particles
+    g_best_position = particles[np.argmin([objective_function(particle) for particle in particles])]
+    p_best_values = [objective_function(particle) for particle in particles]
+    g_best_value = min(p_best_values)
+    history = [g_best_value]
+
+    for _ in range(n_iterations):
+        for i in range(n_particles):
+            new_velocity = (w * velocities[i] + c1 * np.random.random() * (p_best_positions[i] - particles[i]) + c2 * np.random.random() * (g_best_position - particles[i]))
+            velocities[i] = new_velocity
+            particles[i] = new_velocity
+
+            if objective_function(particles[i]) < p_best_values[i]:
+                p_best_positions[i] = particles[i]
+                p_best_values[i] = objective_function(particles[i])
+
+                if p_best_values[i] < g_best_value:
+                    g_best_position = particles[i]
+                    g_best_value = p_best_values[i]
+
+        history.append(g_best_value)
+
+    return g_best_position, history

@@ -1,0 +1,42 @@
+def test_fractional_knapsack():
+    # Test 1: Normal case
+    value = [60, 100, 120]
+    weight = [10, 20, 30]
+    capacity = 50
+    max_value, fractions = fractional_knapsack(value, weight, capacity)
+    assert max_value == 240.0
+    assert fractions == [1, 1, 0.6666666666666666]
+
+    # Test 2: All items can be taken
+    value = [60, 100, 120]
+    weight = [10, 20, 30]
+    capacity = 60
+    max_value, fractions = fractional_knapsack(value, weight, capacity)
+    assert max_value == 300.0
+    assert fractions == [1, 1, 1]
+
+    # Test 3: No items can be taken
+    value = [60, 100, 120]
+    weight = [10, 20, 30]
+    capacity = 5
+    max_value, fractions = fractional_knapsack(value, weight, capacity)
+    assert max_value == 0.0
+    assert fractions == [0, 0, 0]
+
+    # Test 4: One item can be taken
+    value = [60, 100, 120]
+    weight = [10, 20, 30]
+    capacity = 20
+    max_value, fractions = fractional_knapsack(value, weight, capacity)
+    assert max_value == 120.0
+    assert fractions == [0, 1, 0.6666666666666666]
+
+    # Test 5: Empty input
+    value = []
+    weight = []
+    capacity = 0
+    max_value, fractions = fractional_knapsack(value, weight, capacity)
+    assert max_value == 0.0
+    assert fractions == []
+
+test_fractional_knapsack()

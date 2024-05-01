@@ -1,0 +1,15 @@
+def test_Boyer_Moore_search():
+    assert Boyer_Moore_search("Hello, World!", "World") == 8
+    assert Boyer_Moore_search("Hello, World!", "Earth") == -1
+    assert Boyer_Moore_search("ABC ABCDAB ABCDABCDABDE", "ABCDABCDAB") == 15
+    assert Boyer_Moore_search("This is a simple example", "example") == 17
+    assert Boyer_Moore_search("This is a simple example", "simple") == 11
+    assert Boyer_Moore_search("This is a simple example", "This") == 0
+    assert Boyer_Moore_search("This is a simple example", "is") == 2
+    assert Boyer_Moore_search("This is a simple example", "") == 0
+    assert Boyer_Moore_search("", "") == 0
+    assert Boyer_Moore_search("", "non-empty") == -1
+    assert Boyer_Moore_search("non-empty", "") == 0
+    print("All tests passed.")
+
+test_Boyer_Moore_search()

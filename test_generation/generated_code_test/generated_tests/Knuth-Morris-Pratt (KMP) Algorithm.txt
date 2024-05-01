@@ -1,0 +1,44 @@
+def test_KMP_search():
+    # Test case 1: Pattern is found in the text
+    text = "ABC ABCDAB ABCDABCDABDE"
+    pattern = "ABCDABD"
+    assert KMP_search(text, pattern) == [15]
+
+    # Test case 2: Pattern is not found in the text
+    text = "ABC ABCDAB ABCDABCDABDE"
+    pattern = "ABCDABZ"
+    assert KMP_search(text, pattern) == []
+
+    # Test case 3: Pattern is found at the beginning of the text
+    text = "ABCDABD ABCDABCDABDE"
+    pattern = "ABCDABD"
+    assert KMP_search(text, pattern) == [0]
+
+    # Test case 4: Pattern is found at the end of the text
+    text = "ABCDABD ABCDABCDAB"
+    pattern = "AB"
+    assert KMP_search(text, pattern) == [12, 15]
+
+    # Test case 5: Pattern is the same as the text
+    text = "ABCDABD"
+    pattern = "ABCDABD"
+    assert KMP_search(text, pattern) == [0]
+
+    # Test case 6: Pattern is an empty string
+    text = "ABCDABD"
+    pattern = ""
+    assert KMP_search(text, pattern) == list(range(len(text)))
+
+    # Test case 7: Text is an empty string
+    text = ""
+    pattern = "ABCDABD"
+    assert KMP_search(text, pattern) == []
+
+    # Test case 8: Both text and pattern are empty strings
+    text = ""
+    pattern = ""
+    assert KMP_search(text, pattern) == []
+
+    print("All tests passed.")
+
+test_KMP_search()

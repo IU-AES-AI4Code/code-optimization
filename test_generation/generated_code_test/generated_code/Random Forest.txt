@@ -1,0 +1,32 @@
+import numpy as np
+from collections import Counter
+from sklearn.metrics import accuracy_score
+
+class RandomForest:
+    def __init__(self, num_trees):
+        self.num_trees = num_trees
+        self.trees = []
+
+    def bootstrap_sample(self, X, y):
+        n_samples = X.shape[0]
+        idxs = np.random.choice(n_samples, n_samples, replace=True)
+        return X[idxs], y[idxs]
+
+    def most_common_label(self, y):
+        counter = Counter(y)
+        most_common = counter.most_common(1)[0][0]
+        return most_common
+
+    def fit(self, X, y):
+        self.trees = []
+        for _ in range(self.num_trees):
+            tree = DecisionTree()
+            x_sample, y_sample = self.bootstrap_sample(X, y)
+            tree.fit(x_sample, y_sample)
+            self.trees.append(tree)
+
+    def predict(self, X):
+        tree_preds = np.array([tree.predict(X) for tree in self.trees])
+        tree_preds = np.swapaxes(tree_preds, 0, 1)
+        predictions = np.array([self.most_common_label(tree_pred) for tree_pred in tree_preds])
+        return predictions

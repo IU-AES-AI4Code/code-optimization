@@ -1,0 +1,8 @@
+import nltk
+
+def tokenize_text(text):
+    tokens = nltk.word_tokenize(text)
+    return tokens
+
+text = "Hello, I'm an AI Programming Assistant. I'm here to help you with your programming questions."
+print(tokenize_text(text))

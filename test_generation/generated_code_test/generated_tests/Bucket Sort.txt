@@ -1,0 +1,36 @@
+def test_bucket_sort():
+    print("Running tests for bucket sort...")
+
+    # Test with a list of integers
+    test_list1 = [30, 45, 23, 19, 12, 18, 29, 30, 36, 42]
+    expected_output1 = [12, 18, 19, 23, 29, 30, 30, 36, 42, 45]
+    assert bucket_sort(test_list1) == expected_output1
+    print("Test 1 passed")
+
+    # Test with a list of floating point numbers
+    test_list2 = [0.4, 0.3, 0.2, 0.5, 0.1]
+    expected_output2 = [0.1, 0.2, 0.3, 0.4, 0.5]
+    assert bucket_sort(test_list2) == expected_output2
+    print("Test 2 passed")
+
+    # Test with a list of negative numbers
+    test_list3 = [-2, -1, -3, -5, -4]
+    expected_output3 = [-5, -4, -3, -2, -1]
+    assert bucket_sort(test_list3) == expected_output3
+    print("Test 3 passed")
+
+    # Test with an empty list
+    test_list4 = []
+    expected_output4 = []
+    assert bucket_sort(test_list4) == expected_output4
+    print("Test 4 passed")
+
+    # Test with a list of duplicate numbers
+    test_list5 = [2, 2, 2, 2, 2]
+    expected_output5 = [2, 2, 2, 2, 2]
+    assert bucket_sort(test_list5) == expected_output5
+    print("Test 5 passed")
+
+    print("All tests passed")
+
+test_bucket_sort()

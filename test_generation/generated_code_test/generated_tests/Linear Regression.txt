@@ -1,0 +1,34 @@
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import datasets
+
+# Load the diabetes dataset
+X, y = datasets.load_diabetes(return_X_y=True)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize the Linear Regression model
+model = LinearRegression(learning_rate=0.001, n_iters=1000)
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Print the first 5 predictions
+print(y_pred[:5])
+
+# Compare with sklearn's Linear Regression
+from sklearn.linear_model import LinearRegression as sklearn_LinearRegression
+
+sklearn_model = sklearn_LinearRegression()
+sklearn_model.fit(X_train, y_train)
+y_pred_sklearn = sklearn_model.predict(X_test)
+
+# Print the first 5 predictions
+print(y_pred_sklearn[:5])
+
+# Check if the predictions are close
+np.allclose(y_pred, y_pred_sklearn)

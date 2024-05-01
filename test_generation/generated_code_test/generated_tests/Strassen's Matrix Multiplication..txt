@@ -1,0 +1,22 @@
+import unittest
+
+class TestStrassen(unittest.TestCase):
+
+    def test_strassen(self):
+        A = [[1, 2], [3, 4]]
+        B = [[5, 6], [7, 8]]
+        expected_result = [[19, 22], [43, 50]]
+        self.assertEqual(strassen(A, B), expected_result)
+
+        A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        B = [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
+        expected_result = [[84, 90, 96], [201, 216, 231], [318, 342, 366]]
+        self.assertEqual(strassen(A, B), expected_result)
+
+        A = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+        B = [[17, 18, 19, 20], [21, 22, 23, 24], [25, 26, 27, 28], [29, 30, 31, 32]]
+        expected_result = [[256, 272, 288, 304], [640, 688, 736, 784], [1024, 1104, 1184, 1264], [1408, 1520, 1632, 1744]]
+        self.assertEqual(strassen(A, B), expected_result)
+
+if __name__ == '__main__':
+    unittest.main()

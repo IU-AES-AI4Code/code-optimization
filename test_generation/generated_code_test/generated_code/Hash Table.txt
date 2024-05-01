@@ -1,0 +1,37 @@
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.hash_table = self.createBuckets()
+
+    def createBuckets(self):
+        return [[] for _ in range(self.size)]
+
+    def set(self, key, value):
+        hashed_key = hash(key) % self.size
+        bucket = self.hash_table[hashed_key]
+        found_key = False
+        for idx, record in enumerate(bucket):
+            record_key, record_value = record
+            if record_key == key:
+                bucket[idx] = (key, value)
+                found_key = True
+        if not found_key:
+            bucket.append((key, value))
+
+    def get(self, key):
+        hashed_key = hash(key) % self.size
+        bucket = self.hash_table[hashed_key]
+        for idx, record in enumerate(bucket):
+            record_key, record_value = record
+            if record_key == key:
+                return record_value
+        return None
+
+    def delete(self, key):
+        hashed_key = hash(key) % self.size
+        bucket = self.hash_table[hashed_key]
+        for idx, record in enumerate(bucket):
+            record_key, record_value = record
+            if record_key == key:
+                bucket.pop(idx)
+                return

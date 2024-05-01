@@ -1,0 +1,33 @@
+from collections import defaultdict
+
+class Graph:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+    def is_valid_next_vertex(self, path, pos):
+        return self.graph[path[pos - 1]][0] == path[0]
+
+    def hamiltonian_cycle_util(self, path, pos):
+        if pos == self.V:
+            return self.is_valid_next_vertex(path, pos)
+
+        for v in range(1, self.V):
+            if self.is_valid_next_vertex(path, pos):
+                path[pos] = v
+                if self.hamiltonian_cycle_util(path, pos + 1):
+                    return True
+                path[pos] -= 1
+        return False
+
+    def hamiltonian_cycle(self):
+        path = [0] * self.V
+        for v in range(1, self.V):
+            path[0] = v
+            if self.hamiltonian_cycle_util(path, 1):
+                return True
+            path[0] = 0
+        return False

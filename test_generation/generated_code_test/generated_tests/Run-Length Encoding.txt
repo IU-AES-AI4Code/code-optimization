@@ -1,0 +1,26 @@
+def test_run_length_encoding():
+    assert run_length_encoding('') == ''
+    assert run_length_encoding('a') == '1a'
+    assert run_length_encoding('aaa') == '3a'
+    assert run_length_encoding('abc') == '1a1b1c'
+    assert run_length_encoding('aaabbbccc') == '3a3b3c'
+    assert run_length_encoding('aabbbccc') == '2a3b3c'
+    assert run_length_encoding('abcd') == '1a1b1c1d'
+    assert run_length_encoding('aaaabbbbcccc') == '4a4b4c'
+    assert run_length_encoding('aabbcc') == '2a2b2c'
+    assert run_length_encoding('abbbcc') == '1a3b2c'
+    assert run_length_encoding('abbccc') == '1a3b3c'
+    assert run_length_encoding('abcdabcd') == '1a1b1c1d1a1b1c1d'
+    assert run_length_encoding('aaaaaaaaaa') == '10a'
+    assert run_length_encoding('abcabcabc') == '2a1b1c2a'
+    assert run_length_encoding('aabbaabbaabb') == '2a2b2a2b2a'
+    assert run_length_encoding('abcabcabcabc') == '2a1b1c2a2b1c2a'
+    assert run_length_encoding('aaaaaaaabbbbbbbb') == '7a8b'
+    assert run_length_encoding('ababababab') == '1a1b1a1b1a1b1a1b'
+    assert run_length_encoding('abcdabcdabcdabcd') == '4a4b4c4d'
+    assert run_length_encoding('aaaaaaaabbbbbbbbcccccccc') == '7a8b4c'
+    assert run_length_encoding('abcdabcdabcdabcdabcdabcd') == '4a4b4c4d4a4b4c4d'
+    assert run_length_encoding('abcabcabcabcabcabcabc') == '2a1b1c2a2b1c2a2b1c2a'
+    print("All tests passed.")
+
+test_run_length_encoding()

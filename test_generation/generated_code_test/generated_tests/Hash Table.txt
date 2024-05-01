@@ -1,0 +1,30 @@
+def test_hash_table():
+    hash_table = HashTable(10)
+
+    # Test set method
+    hash_table.set('name', 'John Doe')
+    hash_table.set('age', 30)
+    hash_table.set('email', 'john.doe@example.com')
+
+    # Test get method
+    assert hash_table.get('name') == 'John Doe'
+    assert hash_table.get('age') == 30
+    assert hash_table.get('email') == 'john.doe@example.com'
+
+    # Test update method
+    hash_table.set('name', 'Jane Doe')
+    assert hash_table.get('name') == 'Jane Doe'
+
+    # Test delete method
+    hash_table.delete('age')
+    assert hash_table.get('age') is None
+
+    # Test handling of collisions
+    hash_table.set('key1', 'value1')
+    hash_table.set('key2', 'value2')
+    assert hash_table.get('key1') == 'value1'
+    assert hash_table.get('key2') == 'value2'
+
+    print("All tests passed!")
+
+test_hash_table()

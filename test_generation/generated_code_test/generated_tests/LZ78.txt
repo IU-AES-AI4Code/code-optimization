@@ -1,0 +1,24 @@
+def test_lz78():
+    # Test 1: Simple string with no repetitions
+    assert lz78_encode("ABC") == [('A', 0), ('B', 1), ('C', 2)]
+    assert lz78_decode([('A', 0), ('B', 1), ('C', 2)]) == "ABC"
+
+    # Test 2: String with repetitions
+    assert lz78_encode("ABABAB") == [('A', 0), ('B', 1), ('A', 2), ('B', 3), ('A', 4), ('B', 5)]
+    assert lz78_decode([('A', 0), ('B', 1), ('A', 2), ('B', 3), ('A', 4), ('B', 5)]) == "ABABAB"
+
+    # Test 3: String with multiple repetitions
+    assert lz78_encode("AAAABBBCC") == [('A', 0), ('A', 1), ('A', 2), ('A', 3), ('B', 4), ('B', 5), ('C', 6), ('C', 7)]
+    assert lz78_decode([('A', 0), ('A', 1), ('A', 2), ('A', 3), ('B', 4), ('B', 5), ('C', 6), ('C', 7)]) == "AAAABBBCC"
+
+    # Test 4: String with no repetitions
+    assert lz78_encode("ABCDEF") == [('A', 0), ('B', 1), ('C', 2), ('D', 3), ('E', 4), ('F', 5)]
+    assert lz78_decode([('A', 0), ('B', 1), ('C', 2), ('D', 3), ('E', 4), ('F', 5)]) == "ABCDEF"
+
+    # Test 5: String with multiple repetitions and different lengths
+    assert lz78_encode("AAABBBCCC") == [('A', 0), ('A', 1), ('A', 2), ('B', 3), ('B', 4), ('B', 5), ('C', 6), ('C', 7), ('C', 8)]
+    assert lz78_decode([('A', 0), ('A', 1), ('A', 2), ('B', 3), ('B', 4), ('B', 5), ('C', 6), ('C', 7), ('C', 8)]) == "AAABBBCCC"
+
+    print("All tests passed!")
+
+test_lz78()

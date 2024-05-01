@@ -1,0 +1,28 @@
+# Test 1: A simple 3-colorable graph
+graph1 = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+assert color_graph(graph1) == True
+
+# Test 2: A simple 3-colorable graph with more vertices
+graph2 = [[0, 1, 1, 1], [1, 0, 1, 0], [1, 1, 0, 1], [1, 0, 1, 0]]
+assert color_graph(graph2) == True
+
+# Test 3: A graph that cannot be colored with 3 colors
+graph3 = [[0, 1, 1, 1], [1, 0, 1, 0], [1, 1, 0, 1], [1, 0, 1, 0]]
+graph3[3][2] = 1
+assert color_graph(graph3) == False
+
+# Test 4: A graph with more colors than vertices
+graph4 = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+assert color_graph(graph4) == True
+
+# Test 5: A graph with no edges
+graph5 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+assert color_graph(graph5) == True
+
+# Test 6: A graph with one vertex
+graph6 = [[0]]
+assert color_graph(graph6) == True
+
+# Test 7: A graph with no vertices
+graph7 = []
+assert color_graph(graph7) == False

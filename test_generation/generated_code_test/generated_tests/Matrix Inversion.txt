@@ -1,0 +1,33 @@
+def test_invert_matrix():
+    # Test with a regular matrix
+    matrix1 = np.array([[1, 2], [3, 4]])
+    expected_output1 = np.array([[-2, 1], [1.5, -0.5]])
+    assert np.allclose(invert_matrix(matrix1), expected_output1)
+
+    # Test with a matrix that is not invertible
+    matrix2 = np.array([[1, 2], [2, 4]])
+    assert invert_matrix(matrix2) is None
+
+    # Test with a 1x1 matrix
+    matrix3 = np.array([[5]])
+    expected_output3 = np.array([[0.2]])
+    assert np.allclose(invert_matrix(matrix3), expected_output3)
+
+    # Test with a 2x2 identity matrix
+    matrix4 = np.array([[1, 0], [0, 1]])
+    expected_output4 = np.array([[1, 0], [0, 1]])
+    assert np.allclose(invert_matrix(matrix4), expected_output4)
+
+    # Test with a 3x3 matrix
+    matrix5 = np.array([[1, 2, 3], [0, 1, 4], [5, 6, 0]])
+    expected_output5 = np.array([[-24, 18, 5], [20, -15, -4], [-3, 2, 1]])
+    assert np.allclose(invert_matrix(matrix5), expected_output5)
+
+    # Test with a matrix with floating point numbers
+    matrix6 = np.array([[1.5, 2.3], [3.6, 4.1]])
+    expected_output6 = np.array([[-2.1, 1.5], [1.75, -0.65]])
+    assert np.allclose(invert_matrix(matrix6), expected_output6)
+
+    print("All tests passed.")
+
+test_invert_matrix()

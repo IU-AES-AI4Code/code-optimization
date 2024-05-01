@@ -1,0 +1,3 @@
+test_generation/.coverage
+test_generation/__pycache__/
+test_generation/coverage_results

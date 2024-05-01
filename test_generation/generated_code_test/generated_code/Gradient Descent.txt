@@ -1,0 +1,6 @@
+def gradient_descent(x_start, learning_rate, num_iterations):
+    x = x_start
+    for i in range(num_iterations):
+        gradient = compute_gradient(x)  # This function should be implemented
+        x = x - learning_rate * gradient
+    return x

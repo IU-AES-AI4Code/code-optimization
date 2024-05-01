@@ -1,0 +1,45 @@
+def test_alpha_beta_pruning():
+    # Define a simple game tree
+    game_tree = {
+        'A': {'B': {'C': 1, 'D': 2}, 'E': 3},
+        'F': {'G': 4, 'H': {'I': 5, 'J': 6}},
+    }
+
+    # Define the expected best move for the maximizing player
+    expected_best_move = 'E'
+
+    # Use the alpha-beta pruning algorithm to find the best move
+    best_move = alpha_beta_pruning(game_tree, float('-inf'), float('inf'))
+
+    # Check if the best move is as expected
+    assert best_move == expected_best_move, f"Expected {expected_best_move}, but got {best_move}"
+
+def alpha_beta_pruning(node, alpha, beta):
+    if isinstance(node, int):
+        return node
+    max_val = float('-inf')
+    best_move = None
+    for move, child in node.items():
+        val = min_value(child, alpha, beta)
+        if val > max_val:
+            max_val = val
+            best_move = move
+            if max_val >= beta:
+                return best_move
+            alpha = max(alpha, max_val)
+    return best_move
+
+def min_value(node, alpha, beta):
+    if isinstance(node, int):
+        return node
+    min_val = float('inf')
+    for child in node.values():
+        val = alpha_beta_pruning(child, alpha, beta)
+        min_val = min(min_val, val)
+        if min_val <= alpha:
+            return min_val
+        beta = min(beta, min_val)
+    return min_val
+
+# Run the test
+test_alpha_beta_pruning()

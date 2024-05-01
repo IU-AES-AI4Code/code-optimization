@@ -1,0 +1,14 @@
+def finite_automata(string):
+    state = 0
+    pattern = 'hey'
+
+    for char in string:
+        if char == pattern[state]:
+            state += 1
+            if state == len(pattern):
+                return True
+    return False
+
+# Usage
+print(finite_automata('hi there, how are you today, hey! I hope you are doing well.'))  # Returns: True
+print(finite_automata('hi there, how are you today, I hope you are doing well.'))  # Returns: False

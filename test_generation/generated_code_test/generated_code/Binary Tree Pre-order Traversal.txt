@@ -1,0 +1,11 @@
+class Node:
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+
+def pre_order_traversal(root):
+    if root:
+        print(root.data)
+        pre_order_traversal(root.left)
+        pre_order_traversal(root.right)

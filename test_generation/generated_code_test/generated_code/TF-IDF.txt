@@ -1,0 +1,36 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def calculate_tfidf(documents):
+    # Create the TF-IDF vectorizer
+    vectorizer = TfidfVectorizer()
+
+    # Fit and transform the documents
+    tfidf_matrix = vectorizer.fit_transform(documents)
+
+    # Get the feature names (words)
+    feature_names = vectorizer.get_feature_names_out()
+
+    # Convert the sparse matrix to a dense matrix
+    tfidf_matrix = tfidf_matrix.todense()
+
+    # Create a dictionary to store the results
+    results = {}
+
+    # For each document
+    for i, doc in enumerate(documents):
+        # Create a dictionary to store the TF-IDF values for this document
+        doc_tfidf = {}
+
+        # For each word
+        for j, word in enumerate(feature_names):
+            # Get the TF-IDF value
+            tfidf_value = tfidf_matrix[i, j]
+
+            # Add the word and its TF-IDF value to the document dictionary
+            doc_tfidf[word] = tfidf_value
+
+        # Add the document dictionary to the results
+        results[doc] = doc_tfidf
+
+    # Return the results
+    return results

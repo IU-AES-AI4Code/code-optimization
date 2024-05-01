@@ -1,0 +1,25 @@
+def solve_linear_equation(coefficients, constants):
+    """
+    Solve a linear equation of the form:
+    ax + by = e
+    cx + dy = f
+
+    Parameters:
+    coefficients (list): A list of 4 coefficients [a, b, c, d]
+    constants (list): A list of 2 constants [e, f]
+
+    Returns:
+    list: A list of 2 variables [x, y]
+    """
+    a, b, c, d = coefficients
+    e, f = constants
+
+    determinant = a * d - b * c
+
+    if determinant == 0:
+        raise ValueError("The equation has no solution")
+
+    x = (e * d - b * f) / determinant
+    y = (a * f - e * c) / determinant
+
+    return [x, y]

@@ -1,0 +1,26 @@
+import unittest
+
+class TestLinearEquationSolver(unittest.TestCase):
+    def test_solve_linear_equation(self):
+        # Test with a simple 2x2 system
+        coefficients = [2, 1, 1, 3]
+        constants = [4, 6]
+        solution = solve_linear_equation(coefficients, constants)
+        self.assertAlmostEqual(solution[0], -1.0)
+        self.assertAlmostEqual(solution[1], 2.0)
+
+        # Test with another 2x2 system
+        coefficients = [1, 2, 3, 4]
+        constants = [5, 6]
+        solution = solve_linear_equation(coefficients, constants)
+        self.assertAlmostEqual(solution[0], -3.0)
+        self.assertAlmostEqual(solution[1], 2.0)
+
+        # Test with a system where the determinant is zero
+        coefficients = [1, 2, 2, 4]
+        constants = [5, 6]
+        with self.assertRaises(ValueError):
+            solve_linear_equation(coefficients, constants)
+
+if __name__ == '__main__':
+    unittest.main()
