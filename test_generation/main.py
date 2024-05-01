@@ -171,7 +171,7 @@ async def score_code_test(data: CodeTestModel):
 async def compute_mi(data: CodeModel):
     ret_list = []
     for i in range(len(data.code)):
-        if data.code: # non-empty
+        if data.code[i]: # non-empty
             try:
                 maintainability_index = calculate_maintainability_index(data.code[i])
                 ret_list.append({"maintainability_index": maintainability_index})
